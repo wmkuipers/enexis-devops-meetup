@@ -51,7 +51,7 @@ PROJECT_SLUG = ENVIRONMENT_VARIABLES.get("PROJECT_SLUG")
 HADOLINT_CONTAINER = os.getenv("DOCKER_CI_IMAGE",)
 KANIKO_IMAGE = os.getenv("DOCKER_KANIKO_IMAGE")
 
-BUILD_WITH_KANIKO = True    # If set to False, normal docker build will be done locally
+BUILD_WITH_KANIKO = False    # If set to False, normal docker build will be done locally
 VIRTUAL_REPO = os.getenv("ARTI_VIRTUAL_REPO", "docker.io")
 
 # Vault
