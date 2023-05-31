@@ -1,0 +1,3 @@
+# List all CVE's you want to ignore. This means you accept the imposed risk of the CVE.
+
+CVE-0000-1234

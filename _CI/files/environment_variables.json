@@ -1,0 +1,13 @@
+{
+  "PIPENV_VENV_IN_PROJECT": "true",
+  "PIPENV_PIPFILE": "_CI/files/Pipfile",
+  "PIPENV_DEFAULT_PYTHON_VERSION": "3.11",
+  "ARTI_VIRTUAL_REPO": "docker.io",
+  "DOCKER_REGISTRY_URL": "docker.io",
+  "DOCKER_IMAGE_NAME": "enexis-devops-meetup",
+  "PROJECT_SLUG": "enexis-devops-meetup",
+  "STACK_MANAGED_DOCKER_REPO": "False",
+  "VAULT_ADDR": "https://enx.vault.schubergphilis.com",
+  "PUSH_LATEST_PATCH": "True",
+  "BUILD_ARGS_FILE": "build-env"
+}

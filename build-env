@@ -1,0 +1,10 @@
+# These variables are injected into the docker build process only. They will not exist in the container.
+# You can use them, for example, to set a proxy, or set credentials needed on build time
+# The values you set here need to be exposed to the pipeline as environment variables also
+
+# Do not use values with spaces in it. spaces will be stripped during buildtime in Kaniko!
+
+PIP_EXTRA_INDEX_URL=${PIP_EXTRA_INDEX_URL}
+GITLAB_USER_EMAIL=${GITLAB_USER_EMAIL}
+CI_COMMIT_TAG=${CI_COMMIT_TAG}
+CI_COMMIT_SHA=${CI_COMMIT_SHA}

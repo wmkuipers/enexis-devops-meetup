@@ -1,0 +1,10 @@
+---
+label-schema:
+  maintainer: text
+  version: text
+  git-revision: text
+#ignored:
+#  -
+trustedRegistries:
+  - index.docker.io
+  - hub.docker.io

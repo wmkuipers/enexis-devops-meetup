@@ -1,0 +1,10 @@
+{
+    "executables": [
+        "docker",
+        "pipenv"
+    ],
+    "environment_variables": [
+        "VAULT_TOKEN",
+        "VAULT_ADDR"
+    ]
+}

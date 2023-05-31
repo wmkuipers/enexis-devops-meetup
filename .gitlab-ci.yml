@@ -1,0 +1,84 @@
+stages:
+  - update
+  - lint-test-build
+  - scan
+  - release
+  - upload
+  - deploy
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+    - if: '$CI_COMMIT_TAG'
+
+include:
+  - local: _CI/files/gitlab_variables.yml
+  - project: 'platform/ci-cd'
+    file: 
+      - '/gitlab-ci/update-ci.yml'
+      - '/gitlab-ci/semantic-release.yml'
+      - '/gitlab-ci/renovate.yml'
+
+lint:
+  tags:
+    - eks-elastic
+  stage: lint-test-build
+  image: ${DOCKER_CI_IMAGE}
+  script:
+    - _CI/scripts/lint.py
+
+test:
+  tags:
+    - eks-elastic
+  stage: lint-test-build
+  image: ${DOCKER_CI_IMAGE}
+  script:
+    - _CI/scripts/test.py
+
+build:
+  tags:
+    - eks-elastic
+  stage: lint-test-build
+  image: ${DOCKER_KANIKO_IMAGE}
+  script:
+    - build
+  cache:
+    key: ${CI_COMMIT_SHA}
+    paths:
+      - image.tar
+    policy: push
+
+scan:
+  variables:
+    FAIL_ON: CRITICAL
+  tags:
+    - eks-elastic
+  stage: scan
+  image: ${DOCKER_SCAN_IMAGE}
+  script:
+    - scan
+  except:
+    - tags
+  artifacts:
+    paths:
+      - scanning-report.json
+  cache:
+    key: ${CI_COMMIT_SHA}
+    paths:
+      - image.tar
+    policy: pull
+
+upload:
+  tags:
+    - eks-elastic
+  stage: upload
+  image: ${DOCKER_KANIKO_IMAGE}
+  only:
+    - tags
+  except:
+    - branches
+  script:
+    - upload
