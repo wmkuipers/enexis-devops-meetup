@@ -1,4 +1,4 @@
-FROM scratch
+FROM python:3.11
 LABEL maintainer="willem.kuipers@enexis.nl"
 
 ARG GITLAB_USER_EMAIL

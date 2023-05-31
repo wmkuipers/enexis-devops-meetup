@@ -6,5 +6,4 @@ label-schema:
 #ignored:
 #  -
 trustedRegistries:
-  - index.docker.io
-  - hub.docker.io
+  - docker.io
